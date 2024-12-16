@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>
+       Escanear QR
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon slot="end" name="log-out-outline" color="danger" style="padding: 15px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Escanear QR</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        Aquí podrás escanear el código QR que los estudiantes 
+        generen. El docente deberá escanearlo sencillamente, y 
+        automáticamente el estudiante quedará registrado como 
+        presente en la clase correspondiente.
+      </p>
+      <br>
+      <ion-button expand="block" (click)="escanearQR()" color="warning">
+        Activar Camara
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

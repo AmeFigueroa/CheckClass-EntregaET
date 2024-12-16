@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+
+    <ion-card-header style="align-items: center;">
+      <ion-img src="assets/img/cc_docentes.jpg" alt="logo_class_check_docentes" style="width: 60%;" ></ion-img>
+    </ion-card-header>
+
+    <ion-card-content>
+    
+      <form [formGroup]="loginForm">
+        <!-- Input de correo -->
+        <ion-item>
+          <ion-icon name="mail" slot="start" color="medium"></ion-icon>
+          <ion-input fill="outline" label="Correo electronico" label-placement="floating" type="email" placeholder="email@dominio.cl" name="correo" formControlName="correo"></ion-input>
+        </ion-item>
+
+        <!-- Alertas de correo -->
+        <div style="color: red;" id="alerta" *ngIf="loginForm.get('correo')?.invalid && (loginForm.get('correo')?.dirty || loginForm.get('correo')?.touched)">
+          <div style="color: red;" id="alerta" *ngIf="loginForm.get('correo')?.hasError('required')">
+            *Correo es obligatorio
+          </div>
+          <div style="color: red;" id="alerta" *ngIf="loginForm.get('correo')?.hasError('minlength')">
+            *Correo debe contener más de 3 caracteres
+          </div>
+        </div>
+  
+        <!-- Input de contraseña -->
+        <ion-item>
+          <ion-icon name="lock-closed" slot="start" color="medium"></ion-icon>
+          <ion-input fill="outline" label="Contraseña" label-placement="floating" [type]="passwordType" placeholder="*********" name="password" formControlName="contrasena"></ion-input>
+          <ion-button fill="clear" slot="end" (click)="passwordVisibility()">
+            <ion-icon [name]="passwordIcon" color="medium"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <!-- Alertas de contraseña -->
+        <div style="color: red;" id="alerta" *ngIf="loginForm.get('contrasena')?.invalid && (loginForm.get('contrasena')?.dirty || loginForm.get('contrasena')?.touched)">
+          <div style="color: red;" id="alerta" *ngIf="loginForm.get('contrasena')?.hasError('contrasena')">
+            *Contraseña es obligatorio
+          </div>
+          <div style="color: red;" id="alerta" *ngIf="loginForm.get('contrasena')?.hasError('minlength')">
+            *Contraseña debe contener más de 8 caracteres
+          </div>
+        </div>
+  
+        <!-- Botones -->
+        <div style="text-align: center; margin: 15px 0;">
+          <ion-button (click)="login()" [disabled]="!loginForm.valid" shape="round" color="warning">
+            Iniciar Sesión
+          </ion-button>
+        </div>
+      </form>
+
+      <div style="text-align: center;">
+        <ion-button (click)="olvidarcontrasena()" expand="block" fill="clear" shape="round" color="">
+          ¿Olvidaste tu contraseña?
+        </ion-button>
+      </div>
+
+      <div style="text-align: center;">
+        <ion-input type="text" placeholder="————————— OR —————————" disabled></ion-input>
+      </div>
+      
+      <div style="text-align: center;">
+        <ion-label>¿No tienes cuenta?</ion-label>
+        <ion-button (click)="registrarsesion()" fill="clear" color="primary">
+          Registrarse
+        </ion-button>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="warning">
+    <ion-title>Check Class 2024</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

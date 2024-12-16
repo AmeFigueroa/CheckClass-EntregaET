@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Responder Justificativo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon slot="end" name="log-out-outline" color="danger" style="padding: 15px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card style="padding: 16px 24px;">
+    <ion-label style="display: block; padding: 0 1px;">
+      <h4 style="color: black;">{{ justificativo.nombreEstudiante }} {{ justificativo.apellidoEstudiante }}</h4>
+      <p>Asignatura: {{ justificativo.nombreAsignaturaJust }}</p>
+      <p>Sección: {{ justificativo.seccionJust }}</p>
+      <p>Profesor: {{ justificativo.nombreProfesorJust }}</p>
+      <p>Motivo: {{ justificativo.descripcionJust }}</p>
+      <img [src]="justificativo.imagenJust" alt="Imagen de la asignatura" />
+      
+
+      <form [formGroup]="respuestaForm" (ngSubmit)="guardarRespuesta()">
+        <ion-textarea style="border: 2px solid rgba(0, 0, 0, 0.496); border-radius: 8px; padding: 12px;" 
+          label="Respuesta" formControlName="respuesta" labelPlacement="floating" rows="8">
+        </ion-textarea>
+        <div style="color: red;" id="alerta" *ngIf="respuestaForm.get('respuesta')?.invalid && (respuestaForm.get('respuesta')?.dirty || respuestaForm.get('respuesta')?.touched)">
+          *Respuesta Justificación es Obligatorio
+        </div>
+      </form>
+      
+      <ion-button *ngIf="justificativo.respuesta; else enviarRespuesta" expand="block" color="warning" (click)="guardarRespuesta()">
+        Editar Respuesta
+      </ion-button>
+      <ng-template #enviarRespuesta>
+        <ion-button expand="block" color="warning" (click)="guardarRespuesta()">
+          Enviar Respuesta
+        </ion-button>
+      </ng-template>
+      
+    </ion-label>
+  </ion-card>
+</ion-content>

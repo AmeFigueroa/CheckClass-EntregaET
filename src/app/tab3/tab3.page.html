@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>
+       Justificaciones 
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon slot="end" name="log-out-outline" color="danger" style="padding: 15px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ng-container *ngFor="let estudiante of estudiantes">
+      <ion-item *ngIf="estudiante.justificativos && estudiante.justificativos.length > 0">
+        <ion-label>
+          <h4>{{ estudiante.nombre }} {{ estudiante.apellido }}</h4>
+          <h3>{{ estudiante.carrera }}</h3>
+
+          <ion-list>
+            <ng-container *ngFor="let justificativo of estudiante.justificativos">
+              <ion-item>
+                <ion-label>
+                  <h2>{{ justificativo.nombreAsignaturaJust }}</h2>
+                  <p>Sección: {{ justificativo.seccionJust }}</p>
+                  <p>Profesor: {{ justificativo.nombreProfesorJust }}</p>
+                  <p>Motivo: {{ justificativo.descripcionJust }}</p>
+                  <img [src]="justificativo.imagenJust" alt="Imagen de la asignatura" />
+                    <ion-button style="font-size: 15px; padding: 10px;" expand="block" 
+                    (click)="buscarJustificativo(justificativo)" color="warning">Agregar respuesta</ion-button>
+                </ion-label>
+              </ion-item>
+            </ng-container>
+          </ion-list>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>
+       Mi Perfil 
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon slot="end" name="log-out-outline" color="danger" style="padding: 15px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-list *ngIf="usuario">
+      <!-- PFP -->
+      <ion-item>
+        <img [src]="usuario.fotoPerfil" alt="{{ usuario.fotoPerfil }}" style="max-width: 100%; height: auto;">
+      </ion-item>
+
+      <!-- NOMBRE -->
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input value="{{ usuario.nombre }}" readonly></ion-input>
+      </ion-item>
+
+      <!-- APELLIDO -->
+      <ion-item>
+        <ion-label position="stacked">Apellido</ion-label>
+        <ion-input value="{{ usuario.apellido }}" readonly></ion-input>
+      </ion-item>
+
+      <!-- RUT -->
+      <ion-item>
+        <ion-label position="stacked">Rut</ion-label>
+        <ion-input value="{{ usuario.rut }}" readonly></ion-input>
+      </ion-item>
+
+      <!-- CORREO -->
+      <ion-item>
+        <ion-label position="stacked">Correo</ion-label>
+        <ion-input value="{{ usuario.correo }}" readonly></ion-input>
+      </ion-item>
+
+      <!-- CONTRASEÑA -->
+      <ion-item>
+        <ion-label position="stacked">Contraseña</ion-label>
+        <ion-input type="password" value="{{ usuario.contrasena }}" readonly></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <!-- BOTON -->
+    <ion-button expand="block" (click)="editarPerfil()" color="warning">Editar Información</ion-button>
+
+  </ion-card>
+  
+</ion-content>
