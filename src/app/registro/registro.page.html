@@ -1,0 +1,160 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <br>
+    <ion-title>Registro</ion-title>
+    <br>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header style="align-items: center;">
+      <ion-img src="assets/img/cc_estudiantes.jpg" alt="logo_class_check_estudiantes" style="width: 60%;"></ion-img>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="registroForm" (ngSubmit)="crearUsuario()">
+
+    
+        <ion-item>
+          <ion-icon name="person" slot="start" color="medium"></ion-icon>
+          <ion-input fill="outline" label="Nombre" label-placement="floating" type="text" placeholder="Nombre" formControlName="nombre"></ion-input>
+        </ion-item>   
+
+        <div style="color: red;" id="alerta" *ngIf="registroForm.get('nombre')?.invalid && (registroForm.get('nombre')?.dirty || registroForm.get('nombre')?.touched)">
+          <div *ngIf="registroForm.get('nombre')?.hasError('required')">
+            *Nombre es Obligatorio
+          </div>
+          <div *ngIf="registroForm.get('nombre')?.hasError('minlength')">
+            *Nombre debe tener mínimo 3 caracteres
+          </div>
+          <div *ngIf="registroForm.get('nombre')?.hasError('pattern')">
+            *Nombre solo puede contener letras
+          </div>
+        </div>
+
+        <ion-item>
+          <ion-icon name="person" slot="start" color="medium"></ion-icon>
+          <ion-input fill="outline" label="Apellido" label-placement="floating" type="text" placeholder="Apellido" formControlName="apellido"></ion-input>
+        </ion-item>
+
+        <div style="color: red;" id="alerta" *ngIf="registroForm.get('apellido')?.invalid && (registroForm.get('apellido')?.dirty || registroForm.get('apellido')?.touched)">
+          <div *ngIf="registroForm.get('apellido')?.hasError('required')">
+            *Apellido es Obligatorio
+          </div>
+          <div *ngIf="registroForm.get('apellido')?.hasError('minlength')">
+            *Apellido debe tener mínimo 3 caracteres
+          </div>
+          <div *ngIf="registroForm.get('apellido')?.hasError('pattern')">
+            *Apellido solo puede contener letras
+          </div>
+        </div>
+
+        <ion-item>
+          <ion-icon name="id-card" slot="start" color="medium"></ion-icon>
+          <ion-input fill="outline" label="RUT" label-placement="floating" type="text" placeholder="12345678-9" formControlName="rut"></ion-input>
+        </ion-item>
+        
+        <div style="color: red;" id="alerta" *ngIf="registroForm.get('rut')?.invalid && (registroForm.get('rut')?.dirty || registroForm.get('rut')?.touched)">
+          <div *ngIf="registroForm.get('rut')?.hasError('required')">
+            *RUT es Obligatorio
+          </div>
+          <div *ngIf="registroForm.get('rut')?.hasError('pattern')">
+            *Formato de RUT no válido
+          </div>
+        </div>        
+
+        <ion-item>
+          <ion-icon name="mail" slot="start" color="medium"></ion-icon>
+          <ion-input fill="outline" label="Correo electronico" label-placement="floating" type="email" placeholder="email@duocuc.cl" formControlName="correo"></ion-input>
+        </ion-item>
+
+        <div style="color: red;" id="alerta" *ngIf="registroForm.get('correo')?.invalid && (registroForm.get('correo')?.dirty || registroForm.get('correo')?.touched)">
+          <div *ngIf="registroForm.get('correo')?.hasError('required')">
+            *Correo es Obligatorio
+          </div>
+          <div *ngIf="registroForm.get('correo')?.hasError('email')">
+            *Formato de correo no válido
+          </div>
+          <div *ngIf="registroForm.get('correo')?.hasError('domain')">
+            *El correo debe tener un formato válido (email&#64;duocuc.cl)
+          </div>
+        </div>
+
+        <ion-item>
+          <ion-icon name="lock-closed" slot="start" color="medium"></ion-icon>
+          <ion-input fill="outline" label="Contraseña" label-placement="floating" [type]="passwordType1" placeholder="*********" name="password" formControlName="contrasena"></ion-input>
+          <ion-button fill="clear" slot="end" (click)="passwordVisibility1()">
+            <ion-icon [name]="passwordIcon1" color="medium"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <div style="color: red;" id="alerta" *ngIf="registroForm.get('contrasena')?.invalid && (registroForm.get('contrasena')?.dirty || registroForm.get('contrasena')?.touched)">
+          <div *ngIf="registroForm.get('contrasena')?.hasError('required')">
+            *Contraseña es Obligatorio
+          </div>
+          <div  *ngIf="registroForm.get('contrasena')?.hasError('minlength') && (registroForm.get('contraseñna')?.dirty || registroForm.get('contrasena')?.touched)" >
+            *La contraseña debe tener al menos 8 caracteres
+          </div>
+        </div>
+
+        <ion-item>
+          <ion-icon name="lock-closed" slot="start" color="medium"></ion-icon>
+          <ion-input fill="outline" label="Repetir contraseña" label-placement="floating" [type]="passwordType2" placeholder="*********" name="password" formControlName="confirmarContrasena"></ion-input>
+          <ion-button fill="clear" slot="end" (click)="passwordVisibility2()">
+            <ion-icon [name]="passwordIcon2" color="medium"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <div style="color: red;" id="alerta" *ngIf="registroForm.get('confirmarContrasena')?.invalid && (registroForm.get('confirmarContrasena')?.dirty || registroForm.get('confirmarContrasena')?.touched)">
+          <div *ngIf="registroForm.get('confirmarContrasena')?.hasError('required')">
+            *Repetir Contraseña es Obligatorio
+          </div>
+          <div *ngIf="registroForm.hasError('mismatch') && (registroForm.get('confirmarContrasena')?.dirty || registroForm.get('confirmarContrasena')?.touched)">
+            *Las contraseñas no coinciden
+          </div>
+        </div>
+
+        <br>
+
+        <div style="text-align: center;">
+          <ion-button (click)="crearUsuario()" [disabled]="!registroForm.valid" type="submit" fill="solid" shape="round" color="warning" style="padding-bottom: 15px;">
+            Crear cuenta
+          </ion-button>
+        </div>
+        
+        <div style="text-align: center;">
+          <ion-input type="text" placeholder="————————— OR —————————" disabled></ion-input>
+        </div>
+        
+        <div style="text-align: center;">
+          <ion-label>¿Ya tienes una cuenta?</ion-label>
+          <br>
+          <ion-button (click)="pageinicio()" fill="clear" color="primary">
+            Inicia sesión
+          </ion-button>
+        </div>
+
+      </form>
+
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="warning">
+    <ion-title>Class Check-In 2024</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

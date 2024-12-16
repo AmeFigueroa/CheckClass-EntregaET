@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Detalle Asistencia
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon slot="end" name="log-out-outline" color="danger" style="padding: 15px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <img [src]="asignaturas.imagen" alt="{{ asignaturas.nombreAsignatura }}" style="max-width: 100%; height: auto;">
+  <p><strong>Profesor:</strong> {{ asignaturas.nombreProfesor }}</p>
+  <p><strong>Sección:</strong> {{ asignaturas.seccion }}</p>
+  <p><strong>Fecha:</strong> {{ asignaturas.fecha }}</p>
+  <p><strong>Descripción:</strong> {{ asignaturas.descripcion }}</p>
+
+  <div style="text-align: center;">
+    <ion-button (click)="generarQR()" color="warning" shape="round">
+      Registrar Asistencia
+    </ion-button>
+
+    <ion-card *ngIf="qrdata">
+      <ion-card-content>
+        <qrcode [qrdata]="qrdata" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

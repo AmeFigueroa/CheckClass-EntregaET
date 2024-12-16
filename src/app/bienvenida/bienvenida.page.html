@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>
+      Hola! {{usuarios}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card>
+    <ion-card-header>
+      <swiper-container
+      #swiper
+      (afterinit)="swiperReady()"
+      (slidechange)="swiperSlideChanged($event)"
+      [loop]="true"
+      [pagination]="true">
+      <swiper-slide>
+        <ion-img class="imagenBordes" src="assets/img/carrusel_1.jpg" alt="carrusel_1" style="width: 100%;" ></ion-img>
+      </swiper-slide>
+      <swiper-slide>
+        <ion-img class="imagenBordes" src="assets/img/carrusel_2.jpg" alt="carrusel_2" style="width: 100%;" ></ion-img>
+      </swiper-slide>
+      <swiper-slide>
+        <ion-img class="imagenBordes" src="assets/img/carrusel_3.jpg" alt="carrusel_3" style="width: 100%;" ></ion-img>
+      </swiper-slide>
+    </swiper-container>
+    <div >
+      <ion-buttons slot="end" style="position: absolute; top: 0; right: 0">
+        <ion-button (click)="iniciandoApp()">
+          <ion-icon slot="end" name="close-circle-outline" color="dark" style="padding: 15px; font-size: 30px;"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-card-title>¡Te damos la bienvenida {{usuarios}} a CheckIn Estudiantes!</ion-card-title>
+    </div>
+    </ion-card-header>
+
+      <ion-card-content>
+        <h3> Esta aplicación ha sido diseñada para facilitar tu experiencia académica. 
+          Aquí podrás visualizar tus clases de manera rápida y sencilla, acceder a tus 
+          horarios, y mantener un registro de tus asistencias. Si faltas a alguna clase, 
+          no te preocupes, podrás registrar tus justificativos directamente desde la app, 
+          para que todo esté en orden con tus profesores.
+          <br>
+          ¡Organiza tus clases y mantente al día con tus responsabilidades académicas con solo unos clicks!
+          <br>
+          ¡Estamos aquí para ayudarte a gestionar tu tiempo y éxito académico!
+        </h3>        
+      </ion-card-content>
+
+  </ion-card>
+ 
+
+</ion-content>

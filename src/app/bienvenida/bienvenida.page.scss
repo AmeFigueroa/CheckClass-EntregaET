@@ -1,0 +1,35 @@
+swiper-container {
+    width: 100%;
+    height: auto;
+    margin: 0; 
+    position: relative; 
+}
+
+swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-card{
+    margin-top: 13%;
+    justify-content: center;
+    text-align: center;
+}
+
+h1{
+    font-weight: bold;
+}
+
+.imagenBordes {
+    width: 70%;
+    height: 70%;
+    border-radius: 10%;
+    margin: auto;
+    overflow: hidden;
+}
+
+h3{
+    font-size: 17px;
+}

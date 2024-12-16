@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Justificativo de Inasistencia
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon slot="end" name="log-out-outline" color="danger" style="padding: 15px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Justificación de Inasistencia</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p>Para justificar tu inasistencia, especifica la clase, sección, motivo y adjunta un justificativo que acredite la causa.</p>
+    </ion-card-content>
+
+    <form [formGroup]="justificativoForm" (ngSubmit)="guardarJustificativo()">
+      <ion-item>
+        <ion-label position="floating">Nombre Asignatura</ion-label>
+        <ion-input type="text" formControlName="nombreAsignaturaJust"></ion-input>
+      </ion-item>
+      <div style="color: red;" id="alerta" *ngIf="justificativoForm.get('nombreAsignaturaJust')?.invalid && (justificativoForm.get('nombreAsignaturaJust')?.dirty || justificativoForm.get('nombreAsignaturaJust')?.touched)">
+        *Nombre Asignatura es Obligatorio
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Profesor</ion-label>
+        <ion-input type="text" formControlName="nombreProfesorJust"></ion-input>
+      </ion-item>
+      <div style="color: red;" id="alerta" *ngIf="justificativoForm.get('nombreProfesorJust')?.invalid && (justificativoForm.get('nombreProfesorJust')?.dirty || justificativoForm.get('nombreProfesorJust')?.touched)">
+        *Nombre Profesor es Obligatorio
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Sección</ion-label>
+        <ion-input type="text" formControlName="seccionJust"></ion-input>
+      </ion-item>
+      <div style="color: red;" id="alerta" *ngIf="justificativoForm.get('seccionJust')?.invalid && (justificativoForm.get('seccionJust')?.dirty || justificativoForm.get('seccionJust')?.touched)">
+        *Sección es Obligatorio
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input type="text" formControlName="descripcionJust"></ion-input>
+      </ion-item>
+      <div style="color: red;" id="alerta" *ngIf="justificativoForm.get('descripcionJust')?.invalid && (justificativoForm.get('descripcionJust')?.dirty || justificativoForm.get('descripcionJust')?.touched)">
+        *Descripción es Obligatorio
+      </div>
+
+      <ion-item>
+        <ion-label position="stacked">Justificativo</ion-label>
+        <input type="file" (change)="seleccionarImgen($event)" accept="image/*" />
+      </ion-item>
+
+      <img *ngIf="imagenEscogida" [src]="imagenEscogida" alt="Vista previa de la imagen" style="max-width: 100%; margin-top: 10px;"/>
+
+      <div style="text-align: center;">
+        <ion-button [disabled]="!justificativoForm.valid" fill="solid" shape="round" color="warning" style="padding-bottom: 15px;" type="submit">
+          Enviar Justificativo
+        </ion-button>
+      </div>
+    </form>
+  
+  </ion-card>
+</ion-content>

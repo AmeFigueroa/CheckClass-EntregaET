@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>
+      Justificativos
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon slot="end" name="log-out-outline" color="danger" style="padding: 15px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <h2>Aquí puedes visualizar tus justificantivos</h2>
+  <ion-list *ngIf="usuario">
+    <ion-card>
+      <ion-list>
+        <ion-item *ngFor="let justificativo of usuario.justificativos" (click)="modificarJustificativo(justificativo)">
+          <ion-icon name="book-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h2>{{ justificativo.nombreAsignaturaJust }}</h2>
+            <p>Sección: {{ justificativo.seccionJust }}</p>
+            <p>Profesor: {{ justificativo.nombreProfesorJust }}</p>
+            <p>Descripción: {{ justificativo.descripcionJust }}</p>
+            <img [src]="justificativo.imagenJust" alt="Imagen de Justificativo" style="max-width: 100%; height: auto;">
+            <br>
+            <p style="text-align: center;">———————————</p>
+            <p>Respuesta Docente:</p>
+            <p *ngIf="justificativo.respuesta && justificativo.respuesta.trim().length > 0">
+              {{ justificativo.respuesta }}
+            </p>
+            <p *ngIf="!justificativo.respuesta || justificativo.respuesta.trim().length === 0" style="color: gray;">
+              El docente aún no ha respondido
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </ion-list>
+
+  <div style="text-align: center;">
+    <ion-button fill="solid" shape="round" color="warning" (click)="crearJustificativo()">
+      Añadir Nuevo Justificativo
+    </ion-button>
+  </div>
+</ion-content>

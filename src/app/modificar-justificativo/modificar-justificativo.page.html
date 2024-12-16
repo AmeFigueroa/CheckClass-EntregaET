@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Modificar Justificativo
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon slot="end" name="log-out-outline" color="danger" style="padding: 15px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <form (ngSubmit)="guardarCambiosJustificativo()">
+      <ion-item>
+        <ion-label position="floating">Nombre Asignatura</ion-label>
+        <ion-input type="text" [(ngModel)]="editedJustificativo.nombreAsignaturaJust" name="nombreAsignaturaJust" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Profesor</ion-label>
+        <ion-input type="text" [(ngModel)]="editedJustificativo.nombreProfesorJust" name="nombreProfesorJust" required></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Sección</ion-label>
+        <ion-input type="text" [(ngModel)]="editedJustificativo.seccionJust" name="seccionJust" required></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea type="text" [(ngModel)]="editedJustificativo.descripcionJust" name="descripcionJust" required></ion-textarea>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Imagen URL</ion-label>
+        <ion-input type="file" (change)="cambiarFotoJustificativo($event)" accept="image/*"></ion-input>
+      </ion-item>
+      <ion-item>
+        <img [src]="editedJustificativo.imagenJust || 'default-justificativo.png'" alt="Imagen Justificativo" style="max-width: 100%; height: auto;">
+      </ion-item>
+      
+      <div style="text-align: center;">
+        <ion-button color="warning" shape="round" type="submit">
+          Guardar Cambios
+        </ion-button>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

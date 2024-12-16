@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>
+      Asignaturas
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon slot="end" name="log-out-outline" color="danger" style="padding: 15px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>Aquí puedes visualizar tus asignaturas</h2>
+  
+  <ion-list *ngFor="let usuario of usuarios">
+      <ion-card *ngFor="let asignatura of usuario.asignaturas" (click)="navegarAsignatura(asignatura)">
+        <ion-item>
+          <ion-icon name="book-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h2>{{ asignatura.nombreAsignatura }}</h2>
+            <img [src]="asignatura.imagen" alt="{{ asignatura.imagen }}" style="max-width: 100%; height: auto;">
+            <p>Descripción: {{ asignatura.descripcion }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-card>
+  </ion-list>
+  
+  
+  
+</ion-content>

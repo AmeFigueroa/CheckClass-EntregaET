@@ -1,0 +1,89 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header style="align-items: center;">
+      <ion-img src="assets/img/cc_estudiantes.jpg" alt="logo_class_check_estudiantes" style="width: 60%;"></ion-img>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="loginForm">
+        <!-- CORREO -->
+        <ion-item>
+          <ion-icon name="mail" slot="start" color="medium"></ion-icon>
+          <ion-input fill="outline" label="Correo electronico" label-placement="floating" type="email" placeholder="email@duocuc.cl" name="correo" formControlName="correo"></ion-input>
+        </ion-item>
+
+        <div id="alerta" *ngIf="loginForm.get('correo')?.invalid && (loginForm.get('correo')?.dirty || loginForm.get('correo')?.touched)">
+          <div *ngIf="loginForm.get('correo')?.hasError('required')">
+            *Correo es obligatorio
+          </div>
+        </div>        
+
+        <!-- CONTRASEÑA -->
+        <ion-item>
+          <ion-icon name="lock-closed" slot="start" color="medium"></ion-icon>
+          <ion-input fill="outline" label="Contraseña" label-placement="floating" [type]="passwordType" placeholder="*********" name="password" formControlName="contrasena"></ion-input>
+          <ion-button fill="clear" slot="end" (click)="passwordVisibility()">
+            <ion-icon [name]="passwordIcon" color="medium"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <div id="alerta" *ngIf="loginForm.get('contrasena')?.invalid && (loginForm.get('contrasena')?.dirty || loginForm.get('contrasena')?.touched)">
+          <div *ngIf="loginForm.get('contrasena')?.hasError('required')">
+            *Contraseña es obligatoria
+          </div>
+          <div *ngIf="loginForm.get('contrasena')?.hasError('minlength')">
+            *Contraseña debe tener mínimo 8 caracteres
+          </div>
+        </div>        
+
+        <!-- BOTON DE INICIO -->
+        <div style="text-align: center;">
+          <ion-button (click)="login()" [disabled]="!loginForm.valid" fill="solid" shape="round" color="warning" style="padding-bottom: 15px;">
+            Iniciar Sesión
+          </ion-button>
+        </div>
+      </form>
+
+      <div style="text-align: center;">
+        <ion-button (click)="olvidarcontrasena()" expand="block" fill="clear" shape="round" color="">
+          ¿Olvidaste tu contraseña?
+        </ion-button>
+      </div>
+
+      <div style="text-align: center;">
+        <ion-input type="text" placeholder="————————— OR —————————" disabled></ion-input>
+      </div>
+      <br>
+      <div style="text-align: center;">
+        <ion-label>¿No tienes cuenta?</ion-label>
+        <br>
+        <ion-button (click)="registrarsesion()" fill="clear" color="primary">
+          Registrarse
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="warning">
+    <ion-title>Check Class 2024</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
